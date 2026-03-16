@@ -3,7 +3,7 @@ description: AWS Lake Formation is a fully managed service that makes it easy to
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/lake-formation/
 created: '2024-01-15'
-modified: '2026-03-13'
+modified: '2026-03-16'
 apis:
 - name: AWS Lake Formation API
   description: >-
