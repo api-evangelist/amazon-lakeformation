@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: AWS Lake Formation
+  description: AWS Lake Formation API for managing lakeformation resources.
+  tags:
+  - AWS Lake Formation
+  - AWS
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lakeformation
+    baseUri: https://lakeformation.us-east-1.amazonaws.com
+    description: AWS Lake Formation service.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_ACCESS_KEY_ID}}'
+      placement: header
+    resources:
+    - name: databases
+      path: /databases
+      description: Data Catalog database management
+      operations:
+      - name: createdatabase
+        method: POST
+        description: Creates a new database in the Data Catalog.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getdatabase
+        method: GET
+        description: Retrieves the definition of a specified database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: listdatabases
+        method: GET
+        description: Lists all the registered databases in the Data Catalog.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8101
+    namespace: lakeformation-rest
+    resources: []
+  - type: mcp
+    port: 9101
+    namespace: lakeformation-mcp
+    transport: http
+    tools:
+    - name: createdatabase
+      description: Creates a new database in the Data Catalog.
+      hints:
+        readOnly: false
+        idempotent: false
+      call: lakeformation.createdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdatabase
+      description: Retrieves the definition of a specified database.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: lakeformation.getdatabase
+      outputParameters:
+      - type: object
+        mapping: $.

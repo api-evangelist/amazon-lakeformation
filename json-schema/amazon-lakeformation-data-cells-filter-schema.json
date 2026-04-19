@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-lakeformation/refs/heads/main/json-schema/amazon-lakeformation-data-cells-filter-schema.json",
+  "title": "DataCellsFilter",
+  "description": "A Lake Formation data cells filter for row-level and column-level security.",
+  "type": "object",
+  "properties": {
+    "TableCatalogId": {
+      "type": "string",
+      "description": "The ID of the Data Catalog."
+    },
+    "DatabaseName": {
+      "type": "string",
+      "description": "A database in the Data Catalog."
+    },
+    "TableName": {
+      "type": "string",
+      "description": "The name of the table."
+    },
+    "Name": {
+      "type": "string",
+      "description": "The name given by the user to the data filter cell."
+    },
+    "ColumnNames": {
+      "type": "array",
+      "description": "A list of column names."
+    },
+    "RowFilter": {
+      "type": "object",
+      "description": "A PartiQL predicate for row-level filtering."
+    }
+  }
+}

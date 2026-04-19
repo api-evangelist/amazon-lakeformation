@@ -1,0 +1,76 @@
+vocabulary: 1.0.0
+info:
+  provider: AWS Lake Formation
+  description: Unified vocabulary for AWS Lake Formation API operations and capability workflows.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - namespace: lakeformation
+    version: '2024-01-01'
+    status: active
+  resources:
+  - name: databases
+    api: lakeformation
+    actions:
+    - create database
+    - get database
+    - list databases
+    - batch grant permissions
+    - batch revoke permissions
+    - create data cells filter
+    - list data cells filters
+  actions:
+  - name: create
+    http_method: POST
+    pattern: write
+  - name: list
+    http_method: GET
+    pattern: read
+  - name: describe
+    http_method: GET
+    pattern: read
+  - name: update
+    http_method: PUT
+    pattern: write
+  - name: delete
+    http_method: DELETE
+    pattern: destructive
+  authentication:
+    schemes:
+    - type: apikey
+      header: Authorization
+      description: AWS Signature Version 4
+capability:
+  workflows:
+  - name: AWS Lake Formation Workflow
+    file: capabilities/amazon-lakeformation-workflow.yaml
+    description: Unified workflow for AWS Lake Formation resource management
+    apis_combined:
+    - lakeformation
+    tool_count: 3
+    personas:
+    - Developer
+    - Administrator
+  personas:
+  - id: developer
+    name: Developer
+    description: Integrates API into applications
+  - id: administrator
+    name: Administrator
+    description: Manages resources and configurations
+crossReference:
+- resource: databases
+  operations:
+  - CreateDatabase
+  - GetDatabase
+  - ListDatabases
+  - BatchGrantPermissions
+  - BatchRevokePermissions
+  - CreateDataCellsFilter
+  - ListDataCellsFilter
+  workflows:
+  - AWS Lake Formation Workflow
+  personas:
+  - Developer
+  - Administrator

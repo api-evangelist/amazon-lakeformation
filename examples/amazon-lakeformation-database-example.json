@@ -1,0 +1,7 @@
+{
+  "Name": "my_analytics_db",
+  "CatalogId": "abc12345-def0-6789-1234-abcdef012345",
+  "Description": "example-value",
+  "LocationUri": "example-value",
+  "CreateTime": "2025-03-15T14:30:00Z"
+}

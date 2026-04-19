@@ -1,0 +1,8 @@
+{
+  "TableCatalogId": "abc12345-def0-6789-1234-abcdef012345",
+  "DatabaseName": "production-resource",
+  "TableName": "production-resource",
+  "Name": "production-resource",
+  "ColumnNames": [],
+  "RowFilter": {}
+}

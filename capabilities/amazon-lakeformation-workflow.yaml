@@ -1,0 +1,58 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: AWS Lake Formation Workflow
+  description: Unified workflow capability for AWS Lake Formation combining resource management and operations.
+  tags:
+  - AWS Lake Formation
+  - AWS
+  - Workflow
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+capability:
+  consumes:
+  - import: lakeformation
+    location: ./shared/lakeformation.yaml
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: lakeformation-api
+    description: REST API for AWS Lake Formation workflow.
+    resources: []
+  - type: mcp
+    port: 9090
+    namespace: lakeformation-mcp
+    transport: http
+    description: MCP server for AWS Lake Formation.
+    tools:
+    - name: databases-create-database
+      description: Creates a new database in the Data Catalog.
+      hints:
+        readOnly: false
+        idempotent: false
+      call: lakeformation.createdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: databases-get-database
+      description: Retrieves the definition of a specified database.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: lakeformation.getdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: databases-list-databases
+      description: Lists all the registered databases in the Data Catalog.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: lakeformation.listdatabases
+      outputParameters:
+      - type: object
+        mapping: $.

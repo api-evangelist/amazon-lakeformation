@@ -1,27 +1,75 @@
-# AWS Lake Formation API
+# AWS Lake Formation (amazon-lakeformation)
+AWS Lake Formation is a fully managed service that makes it easy to build, secure, and manage data lakes. It simplifies and automates many of the complex manual steps usually required to create data lakes, including collecting, cleansing, cataloging, and securely sharing data, with centralized governance and fine-grained access control.
 
-AWS Lake Formation is a fully managed service that makes it easy to build, secure, and manage data lakes. It simplifies and automates many of the complex manual steps usually required to create data lakes, including collecting, cleansing, cataloging, and securely sharing data, with centralized governance and fine-grained access control across your analytics and machine learning services.
+**URL:** [https://aws.amazon.com/lake-formation/](https://aws.amazon.com/lake-formation/)
+
+**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+
+## Tags:
+
+ - AWS, Data Lake, Analytics, Security, Governance
+
+## Timestamps
+
+- **Created:** 2024-01-15
+- **Modified:** 2026-04-19
 
 ## APIs
 
-- **AWS Lake Formation API** - The AWS Lake Formation API provides programmatic access to build and manage data lakes with centralized governance. It enables developers to register data sources, configure data permissions, manage data catalog resources, grant and revoke fine-grained access controls, and automate data ingestion and transformation workflows.
+### AWS Lake Formation API
 
-## Resources
+**Human URL:** [https://aws.amazon.com/lake-formation/](https://aws.amazon.com/lake-formation/)
 
-### Documentation
-
-- [Documentation](https://docs.aws.amazon.com/lake-formation/)
-- [Getting Started](https://aws.amazon.com/lake-formation/getting-started/)
-
-### Specifications
+#### Properties
 
 - [OpenAPI](openapi/amazon-lakeformation-openapi.yml)
+- [JSONSchema](json-schema/amazon-lakeformation-database-schema.json)
+- [JSONSchema](json-schema/amazon-lakeformation-data-cells-filter-schema.json)
+- [JSONLD](json-ld/amazon-lakeformation-context.jsonld)
 
-### General
+## Artifacts
 
-- [Pricing](https://aws.amazon.com/lake-formation/pricing/)
-- [FAQ](https://aws.amazon.com/lake-formation/faqs/)
+### OpenAPI
+
+- [AWS Lake Formation API](openapi/amazon-lakeformation-openapi.yml)
+
+### JSON Schema
+
+- [Database](json-schema/amazon-lakeformation-database-schema.json)
+- [Data Cells Filter](json-schema/amazon-lakeformation-data-cells-filter-schema.json)
+
+### JSON Structure
+
+- [Database](json-structure/amazon-lakeformation-database-structure.json)
+- [Data Cells Filter](json-structure/amazon-lakeformation-data-cells-filter-structure.json)
+
+### JSON-LD
+
+- [AWS Lake Formation Context](json-ld/amazon-lakeformation-context.jsonld)
+
+### Examples
+
+- [Database Example](examples/amazon-lakeformation-database-example.json)
+- [Data Cells Filter Example](examples/amazon-lakeformation-data-cells-filter-example.json)
+
+## Capabilities
+
+### Workflow Capabilities
+
+| Workflow | APIs Combined | Tools | Persona |
+|----------|--------------|-------|---------|
+| [AWS Lake Formation Workflow](capabilities/amazon-lakeformation-workflow.yaml) | Lake Formation | 7 | Data Engineer, Security Administrator |
+
+## Vocabulary
+
+- [AWS Lake Formation Vocabulary](vocabulary/amazon-lakeformation-vocabulary.yaml)
+
+## Rules
+
+- [AWS Lake Formation Spectral Rules](rules/amazon-lakeformation-spectral-rules.yml)
 
 ## Maintainers
 
-- Kin Lane - kin@apievangelist.com
+**FN:** Kin Lane
+
+**Email:** kin@apievangelist.com
