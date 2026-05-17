@@ -60,7 +60,7 @@ common:
   url: https://signin.aws.amazon.com/signup?request_type=register
 - type: Login
   url: https://aws.amazon.com/console/
-- type: Status
+- type: StatusPage
   url: https://health.aws.amazon.com/health/status
 - type: Contact
   url: https://aws.amazon.com/contact-us/
