@@ -1,0 +1,260 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Lake Formation API — Databases
+  description: 'AWS Lake Formation API — Databases. 7 operations. Lead operation: AWS Lake Formation Batch Grant Permissions.
+    Self-contained Naftiko capability covering one Amazon Lakeformation business surface.'
+  tags:
+  - Amazon Lakeformation
+  - Databases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_LAKEFORMATION_API_KEY: AMAZON_LAKEFORMATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-lakeformation-databases
+    baseUri: https://lakeformation.us-east-1.amazonaws.com
+    description: AWS Lake Formation API — Databases business capability. Self-contained, no shared references.
+    resources:
+    - name: batch-permissions-grant
+      path: /batch-permissions/grant
+      operations:
+      - name: batchgrantpermissions
+        method: POST
+        description: AWS Lake Formation Batch Grant Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: batch-permissions-revoke
+      path: /batch-permissions/revoke
+      operations:
+      - name: batchrevokepermissions
+        method: POST
+        description: AWS Lake Formation Batch Revoke Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: data-cells-filters
+      path: /data-cells-filters
+      operations:
+      - name: createdatacellsfilter
+        method: POST
+        description: AWS Lake Formation Create Data Cells Filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: listdatacellsfilter
+        method: GET
+        description: AWS Lake Formation List Data Cells Filters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: databases
+      path: /databases
+      operations:
+      - name: createdatabase
+        method: POST
+        description: AWS Lake Formation Create Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: listdatabases
+        method: GET
+        description: AWS Lake Formation List Databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: databases-name
+      path: /databases/{name}
+      operations:
+      - name: getdatabase
+        method: GET
+        description: AWS Lake Formation Get Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The name of the database.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_LAKEFORMATION_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-lakeformation-databases-rest
+    port: 8080
+    description: REST adapter for AWS Lake Formation API — Databases. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/batch-permissions/grant
+      name: batch-permissions-grant
+      description: REST surface for batch-permissions-grant.
+      operations:
+      - method: POST
+        name: batchgrantpermissions
+        description: AWS Lake Formation Batch Grant Permissions
+        call: amazon-lakeformation-databases.batchgrantpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/batch-permissions/revoke
+      name: batch-permissions-revoke
+      description: REST surface for batch-permissions-revoke.
+      operations:
+      - method: POST
+        name: batchrevokepermissions
+        description: AWS Lake Formation Batch Revoke Permissions
+        call: amazon-lakeformation-databases.batchrevokepermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-cells-filters
+      name: data-cells-filters
+      description: REST surface for data-cells-filters.
+      operations:
+      - method: POST
+        name: createdatacellsfilter
+        description: AWS Lake Formation Create Data Cells Filter
+        call: amazon-lakeformation-databases.createdatacellsfilter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listdatacellsfilter
+        description: AWS Lake Formation List Data Cells Filters
+        call: amazon-lakeformation-databases.listdatacellsfilter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases
+      name: databases
+      description: REST surface for databases.
+      operations:
+      - method: POST
+        name: createdatabase
+        description: AWS Lake Formation Create Database
+        call: amazon-lakeformation-databases.createdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listdatabases
+        description: AWS Lake Formation List Databases
+        call: amazon-lakeformation-databases.listdatabases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{name}
+      name: databases-name
+      description: REST surface for databases-name.
+      operations:
+      - method: GET
+        name: getdatabase
+        description: AWS Lake Formation Get Database
+        call: amazon-lakeformation-databases.getdatabase
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-lakeformation-databases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Lake Formation API — Databases. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: aws-lake-formation-batch-grant
+      description: AWS Lake Formation Batch Grant Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lakeformation-databases.batchgrantpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-batch-revoke
+      description: AWS Lake Formation Batch Revoke Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lakeformation-databases.batchrevokepermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-create-data
+      description: AWS Lake Formation Create Data Cells Filter
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lakeformation-databases.createdatacellsfilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-list-data
+      description: AWS Lake Formation List Data Cells Filters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lakeformation-databases.listdatacellsfilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-create-database
+      description: AWS Lake Formation Create Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-lakeformation-databases.createdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-list-databases
+      description: AWS Lake Formation List Databases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lakeformation-databases.listdatabases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-lake-formation-get-database
+      description: AWS Lake Formation Get Database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-lakeformation-databases.getdatabase
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
