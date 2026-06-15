@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Lake Formation API",
+    "version": "2024-01-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Lake Formation List Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/databases"
+          },
+          "docs": "Lists all the registered databases in the Data Catalog."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation Create Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/databases"
+          },
+          "docs": "Creates a new database in the Data Catalog."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation Get Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/databases/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database."
+              }
+            ]
+          },
+          "docs": "Retrieves the definition of a specified database."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation Batch Grant Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/batch-permissions/grant"
+          },
+          "docs": "Batch operation to grant permissions to principal on resources."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation Batch Revoke Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/batch-permissions/revoke"
+          },
+          "docs": "Batch operation to revoke permissions from principal on resources."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation List Data Cells Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/data-cells-filters"
+          },
+          "docs": "Lists all the data cells filters on a table."
+        },
+        {
+          "info": {
+            "name": "AWS Lake Formation Create Data Cells Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lakeformation.us-east-1.amazonaws.com/data-cells-filters"
+          },
+          "docs": "Creates a data cells filter to define row/column-level security on tables."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
