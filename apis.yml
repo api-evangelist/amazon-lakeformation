@@ -41,6 +41,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-lakeformation-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-lakeformation-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-lakeformation-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-lakeformation-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-lakeformation-authentication.yml
   - type: Portal
     url: https://aws.amazon.com/
   - type: Portal
