@@ -41,6 +41,8 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-lakeformation-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-lakeformation-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-lakeformation-trust-center.yml
   - type: VulnerabilityDisclosure
