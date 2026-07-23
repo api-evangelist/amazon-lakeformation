@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: AWS Lake Formation API
+  title: AWS Lake Formation Databases API
   description: The AWS Lake Formation API provides programmatic access to manage AWS Lake Formation resources.
   version: '2024-01-01'
   contact:
@@ -165,47 +165,3 @@ components:
       name: Authorization
       in: header
       description: AWS Signature Version 4 authentication
-  schemas:
-    Database:
-      type: object
-      description: A database in the AWS Glue Data Catalog managed by Lake Formation.
-      properties:
-        Name:
-          type: string
-          description: The name of the database.
-          example: my_analytics_db
-        CatalogId:
-          type: string
-          description: The ID of the Data Catalog.
-        Description:
-          type: string
-          description: A description of the database.
-        LocationUri:
-          type: string
-          description: The location of the database (for example, an HDFS path).
-        CreateTime:
-          type: string
-          description: The time at which the metadata database was created.
-          format: date-time
-    DataCellsFilter:
-      type: object
-      description: A Lake Formation data cells filter for row-level and column-level security.
-      properties:
-        TableCatalogId:
-          type: string
-          description: The ID of the Data Catalog.
-        DatabaseName:
-          type: string
-          description: A database in the Data Catalog.
-        TableName:
-          type: string
-          description: The name of the table.
-        Name:
-          type: string
-          description: The name given by the user to the data filter cell.
-        ColumnNames:
-          type: array
-          description: A list of column names.
-        RowFilter:
-          type: object
-          description: A PartiQL predicate for row-level filtering.
