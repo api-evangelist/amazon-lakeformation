@@ -1,0 +1,211 @@
+openapi: 3.1.0
+info:
+  title: AWS Lake Formation API
+  description: The AWS Lake Formation API provides programmatic access to manage AWS Lake Formation resources.
+  version: '2024-01-01'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+servers:
+- url: https://lakeformation.us-east-1.amazonaws.com
+  description: AWS Lake Formation endpoint
+security:
+- sigv4: []
+tags:
+- name: Databases
+  description: Data Catalog database management
+paths:
+  /databases:
+    post:
+      operationId: CreateDatabase
+      summary: AWS Lake Formation Create Database
+      description: Creates a new database in the Data Catalog.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: ListDatabases
+      summary: AWS Lake Formation List Databases
+      description: Lists all the registered databases in the Data Catalog.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /databases/{name}:
+    get:
+      operationId: GetDatabase
+      summary: AWS Lake Formation Get Database
+      description: Retrieves the definition of a specified database.
+      tags:
+      - Databases
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the database.
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /batch-permissions/grant:
+    post:
+      operationId: BatchGrantPermissions
+      summary: AWS Lake Formation Batch Grant Permissions
+      description: Batch operation to grant permissions to principal on resources.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /batch-permissions/revoke:
+    post:
+      operationId: BatchRevokePermissions
+      summary: AWS Lake Formation Batch Revoke Permissions
+      description: Batch operation to revoke permissions from principal on resources.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /data-cells-filters:
+    post:
+      operationId: CreateDataCellsFilter
+      summary: AWS Lake Formation Create Data Cells Filter
+      description: Creates a data cells filter to define row/column-level security on tables.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: ListDataCellsFilter
+      summary: AWS Lake Formation List Data Cells Filters
+      description: Lists all the data cells filters on a table.
+      tags:
+      - Databases
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication
+  schemas:
+    Database:
+      type: object
+      description: A database in the AWS Glue Data Catalog managed by Lake Formation.
+      properties:
+        Name:
+          type: string
+          description: The name of the database.
+          example: my_analytics_db
+        CatalogId:
+          type: string
+          description: The ID of the Data Catalog.
+        Description:
+          type: string
+          description: A description of the database.
+        LocationUri:
+          type: string
+          description: The location of the database (for example, an HDFS path).
+        CreateTime:
+          type: string
+          description: The time at which the metadata database was created.
+          format: date-time
+    DataCellsFilter:
+      type: object
+      description: A Lake Formation data cells filter for row-level and column-level security.
+      properties:
+        TableCatalogId:
+          type: string
+          description: The ID of the Data Catalog.
+        DatabaseName:
+          type: string
+          description: A database in the Data Catalog.
+        TableName:
+          type: string
+          description: The name of the table.
+        Name:
+          type: string
+          description: The name given by the user to the data filter cell.
+        ColumnNames:
+          type: array
+          description: A list of column names.
+        RowFilter:
+          type: object
+          description: A PartiQL predicate for row-level filtering.

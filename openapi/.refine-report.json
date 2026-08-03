@@ -1,0 +1,14 @@
+{
+  "provider": "amazon-lakeformation",
+  "sources": [
+    "amazon-lakeformation-databases-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-lakeformation-databases-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
