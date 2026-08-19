@@ -4,6 +4,7 @@ description: >-
   simplifies and automates many of the complex manual steps usually required to create data lakes, including collecting,
   cleansing, cataloging, and securely sharing data, with centralized governance and fine-grained access control across
   your analytics and machine learning services.
+specificationVersion: '0.23'
 accessModel:
   pricing: freemium
   onboarding: self-serve
